@@ -1,8 +1,6 @@
 name: Publish Website to CPanel
-on:
-  push:
-    branches:
-      - master
+on: workflow_dispatch
+
 jobs:
   web-deploy:
     name: Deploy
