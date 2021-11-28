@@ -20,7 +20,7 @@
   "dependencies": {
     "@fontsource/open-sans": "^4.5.0",
     "@fontsource/poppins": "^4.5.0",
-    "@loadable/component": "^5.15.0",
+
     "@xstyled/styled-components": "^3.0.3",
     "focus-trap-react": "^8.7.1",
     "gatsby": "^4.0.0",
