@@ -1,4 +1,4 @@
-name: Publish Website to CPanel
+name: Deploy
 on: workflow_dispatch
 
 jobs:
@@ -12,6 +12,6 @@ jobs:
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.2.0
         with:
-          ftp-server: ${{ secrets.FTP_SERVER }}
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
