@@ -4,15 +4,16 @@ on:
     branches:
       - master
 jobs:
-  web-deploy:
+  deploy:
     - name: Deploy
       runs-on: ubuntu-latest
       steps:
         - name: Get latest code
-        - uses: actions/checkout@v2
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.2.0
-      with:
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+          uses: actions/checkout@v2
+
+        - name: Sync files
+          uses: SamKirkland/FTP-Deploy-Action@4.2.0
+          with:
+            ftp-server: ${{ secrets.FTP_SERVER }}
+            ftp-username: ${{ secrets.FTP_USERNAME }}
+            ftp-password: ${{ secrets.FTP_PASSWORD }}
