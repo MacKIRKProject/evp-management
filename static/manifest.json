@@ -1,0 +1,22 @@
+{
+  "name": "Scaleway Datacenter",
+  "short_name": "Scaleway Datacenter",
+  "dir": "auto",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "transparent",
+  "start_url": "index.html",
+  "theme_color": "#4f0599",
+  "icons": [
+    {
+      "sizes": "192x192",
+      "src": "/favicon/192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "/favicon/512.png",
+      "type": "image/png"
+    }
+  ]
+}

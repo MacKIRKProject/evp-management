@@ -1,0 +1,77 @@
+{
+  "name": "lesfoliesdedmonde",
+  "version": "1.0.0",
+  "private": true,
+  "description": "lesfoliesdedmonde",
+  "author": "KIRK Axel",
+  "keywords": [
+    "gatsby",
+    "x-styled"
+  ],
+  "scripts": {
+    "develop": "gatsby develop -p 8004",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "lint": "eslint --cache ./src ./gatsby-*.js",
+    "format": "yarn run prettier --config .prettierrc --write \"**/*.{js,json}\""
+  },
+  "dependencies": {
+    "@fontsource/open-sans": "^4.5.0",
+    "@fontsource/poppins": "^4.5.0",
+    "@loadable/component": "^5.15.0",
+    "@xstyled/styled-components": "^3.0.3",
+    "focus-trap-react": "^8.7.1",
+    "gatsby": "^4.0.0",
+    "gatsby-plugin-google-tagmanager": "^4.0.0",
+    "gatsby-plugin-image": "^2.0.0",
+    "gatsby-plugin-intl": "^0.3.3",
+    "gatsby-plugin-module-resolver": "^1.0.3",
+    "gatsby-plugin-react-helmet": "^5.0.0",
+    "gatsby-plugin-react-svg": "^3.1.0",
+    "gatsby-plugin-segment-js": "^3.7.0",
+    "gatsby-plugin-sharp": "^4.0.0",
+    "gatsby-plugin-sitemap": "^5.0.0",
+    "gatsby-plugin-styled-components": "^5.0.0",
+    "gatsby-source-filesystem": "^4.0.0",
+    "gatsby-transformer-sharp": "^4.0.0",
+    "react": "^17.0.1",
+    "react-countup": "^6.0.0",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-multi-carousel": "^2.6.5",
+    "react-scroll-parallax": "^2.4.0",
+    "styled-components": "^5.3.1",
+    "throttle-debounce": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.4",
+    "@babel/preset-env": "^7.11.5",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "babel-eslint": "^10.1.0",
+    "babel-preset-gatsby": "^2.1.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-standard": "^5.0.0",
+    "gatsby-omni-font-loader": "^1.1.1",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.18",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "psi": "^4.0.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn format",
+      "yarn lint"
+    ],
+    "*.json": [
+      "yarn format"
+    ]
+  }
+}

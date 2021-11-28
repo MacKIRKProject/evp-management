@@ -1,0 +1,97 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  SCW_DOCKER_REGISTRY: docker-registry.infra.online.net
+  SCW_DOCKER_USER: uxp-ci-cd
+  BUILDER_IMAGE_NAME: $SCW_DOCKER_REGISTRY/auth/mordor-builder:latest
+  GIT_SUBMODULE_STRATEGY: normal
+
+###################################################################################################
+# Build stage                                                                                     #
+###################################################################################################
+
+build:
+  stage: build
+  image: docker:latest
+  tags:
+    - front
+    - docker
+  variables:
+    IMAGE_NAME: $SCW_DOCKER_REGISTRY/uxp/datacenter
+  before_script:
+    - echo $SCW_DOCKER_PWD | docker login docker.infra.online.net -u $SCW_DOCKER_USER --password-stdin
+    - echo $SCW_DOCKER_PWD | docker login $SCW_DOCKER_REGISTRY -u $SCW_DOCKER_USER --password-stdin
+    - export IMAGE_TAG=$([ "$CI_COMMIT_REF_SLUG" = "main" ] && echo "latest" || echo $CI_COMMIT_REF_SLUG)
+  script:
+    - docker build --pull -t $IMAGE_NAME:$IMAGE_TAG --build-arg BUILD_VISIBILITY=$BUILD_VISIBILITY .
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+
+###################################################################################################
+# Deploy stage                                                                                    #
+###################################################################################################
+
+.base_deploy:
+  stage: deploy
+  tags:
+    - front
+    - docker
+  image: $SCW_DOCKER_REGISTRY/front/mordor-cd:latest
+  variables:
+    ANSIBLE_FORCE_COLOR: 'true'
+    ANSIBLE_HOST_KEY_CHECKING: 'false'
+  before_script:
+    - '( [ -n "$ENV" ] ) || ( echo "Invalid env" && false )'
+    - eval $(ssh-agent -s)
+    - echo "$CI_CD_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh/
+    - ssh-keyscan gitlab.infra.online.net >> ~/.ssh/known_hosts
+    - ansible-galaxy install -f -r ansible/requirements.yml
+    - export VERSION=$([ "$CI_COMMIT_REF_SLUG" = "main" ] && echo "latest" || echo $CI_COMMIT_REF_SLUG)
+  script:
+    - ansible-playbook -i ansible/inventory.yml -l $ENV --extra-vars "version=$VERSION" ansible/deploy.yml
+
+deploy:mr-staging:
+  extends: .base_deploy
+  environment:
+    name: staging
+    url: https://datacenter.stg.frt.internal.scaleway.com
+  variables:
+    ENV: staging
+  only:
+    - branches
+  when: manual
+
+deploy:staging:
+  extends: .base_deploy
+  environment:
+    name: staging
+    url: https://datacenter.stg.frt.internal.scaleway.com
+  variables:
+    ENV: staging
+  only:
+    - main
+
+deploy:prod:
+  extends: .base_deploy
+  environment:
+    name: prod
+    url: http://vtydc2-p14front-cms01.pv.ocshq.com:23000
+  variables:
+    ENV: prod
+    VERSION: $CI_COMMIT_REF_SLUG
+  only:
+    - tags
+
+deploy:mr-prod:
+  extends: .base_deploy
+  environment:
+    name: prod
+    url: http://vtydc2-p14front-cms01.pv.ocshq.com:23000
+  variables:
+    ENV: prod
+    VERSION: $CI_COMMIT_REF_SLUG
+  only:
+    - branches
+  when: manual
