@@ -23,14 +23,13 @@ import {
 import { useLocale } from 'contexts'
 import { slugify } from 'helpers'
 
-import Logo from 'assets/logo-scaleway.inline.svg'
+import Logo from 'assets/logo.inline.svg'
 
 export const hrefs = [
-  'anchor.key',
-  'anchor.solutions',
-  'anchor.documentation',
-  'anchor.environmental',
-  'anchor.compliance',
+  'anchor.presentation',
+  'anchor.photo',
+  'anchor.privatisation',
+  'anchor.contact',
 ]
 
 export function Hrefs({ ...props }) {
@@ -42,8 +41,8 @@ export function Hrefs({ ...props }) {
         const href = gettext(intl)
 
         return (
-          <x.li key={index} {...props}>
-            <Link to={`#${slugify(href)}`} fontSize="default">
+          <x.li key={index} {...props} color='red'>
+            <Link to={`#${slugify(href)}`} fontSize="default" color="red">
               {href}
             </Link>
           </x.li>
@@ -62,7 +61,11 @@ export function Menu() {
   const previousScrollTop = useRef()
   const upLg = useUp('lg')
   const viewportWidth = useViewportWidth()
-
+console.log('scrollPaused', scrollPaused)
+console.log('opened', opened)
+console.log('renderModale', renderModale)
+console.log('shouldDisplay', shouldDisplay)
+console.log('previousScrollTop', previousScrollTop)
   const close = useCallback(() => {
     open(false)
     disableScroll(false)
@@ -129,17 +132,19 @@ export function Menu() {
         justifyContent="space-between"
         alignItems="center"
         px={{ _: 4, lg: 0, md: 10 }}
+        py={{ _: 4 }}
       >
-        <Link to="/" textDecoration="none">
+        <Link to="/" textDecoration="none" display="flex" alignItems="center">
           <Svg
             asset={Logo}
-            width={{ _: 40, md: 247 }}
-            height={1}
-            viewBox="0 0 247 24"
-            color="secondary"
+            width={{ _: 79, md: 79 }}
+            height={100}
+            viewBox="0 0 10656 13434"
+            color="white"
             srOnly={false}
             title="Scaleway Datacenter"
           />
+          <Title>Les folies D'Edmonde</Title>
         </Link>
         <x.div display="flex" alignItems="center" order={3}>
           <PhoneButton tel={gettext('contact.phone.href')} isIcon mr={1}>
@@ -229,9 +234,16 @@ function MobileModale({ opened, renderModale, close }) {
   )
 }
 
+const Title= styled.span`
+margin-left: 5;
+font-size:1.5rem;
+font-weight: 900;
+color: marronSombre;
+`
+
 const Navbar = styled.nav`
   width: full;
-  margin-top: ${({ $shouldDisplay }) => ($shouldDisplay ? '0' : '-58px')};
+  margin-top: ${({ $shouldDisplay }) => ($shouldDisplay ? '0' : '-200px')};
   transition: margin-top 200ms;
   display: flex;
   justify-content: center;
@@ -247,7 +259,7 @@ const Navbar = styled.nav`
       margin: 0;
     `,
   )}
-  background-color: primary-a90;
+  background-color: beigeClair;
   backdrop-filter: blur(8px);
 `
 
@@ -261,11 +273,11 @@ const ListLinks = styled(x.ul)`
     padding: 6 2;
     text-decoration: none;
     &:link {
-      color: secondary-100;
+      color: marronSombre;
       text-decoration: none;
     }
     &:visited {
-      color: secondary-300;
+      color: marronSombre;
     }
   }
   li {
@@ -294,12 +306,12 @@ const ListLinks = styled(x.ul)`
     :hover,
     :focus-within {
       a {
-        color: secondary;
+        color: marronSombre;
       }
       ::after {
         animation: anchor-underline-hover 0.5s cubic-bezier(0, 0.5, 0, 1)
           forwards;
-        background-color: tertiary;
+        background-color: marronSombre;
       }
     }
     :first-of-type {

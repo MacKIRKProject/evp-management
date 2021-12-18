@@ -16,6 +16,10 @@ const colors = {
   'secondary-100': '#f4f4f5',
   'secondary-300': '#d4d4d8',
   tertiary: '#e10019',
+  marronSombre: '#a4543d',
+  marronClair: '#cd7d5f',
+  beigeSombre: '#dbaca2',
+  beigeClair: '#f1d1ba',
 }
 
 const gradients = {

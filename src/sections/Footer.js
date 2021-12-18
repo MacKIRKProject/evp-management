@@ -13,121 +13,95 @@ import {
   shapesGradient,
 } from 'components'
 
-import Logo from 'assets/logo-scaleway.inline.svg'
-
-const clipPaths = [
-  css`
-    ${shapesGradient}
-    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
-    ${up('md', `clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%)`)};
-  `,
-  css`
-    background-color: primary;
-    clip-path: polygon(0 7%, 100% 27%, 100% 100%, 0 100%);
-    ${up('md', `clip-path: polygon(0 16%, 100% 56%, 100% 100%, 0 100%)`)};
-  `,
-  css`
-    background-color: primary;
-    clip-path: polygon(0 30%, 100% 15%, 100% 100%, 0 100%);
-    ${up('md', `clip-path: polygon(0 56%, 100% 16%, 100% 100%, 0 100%)`)};
-  `,
-]
+import Logo from 'assets/logoEcriture.inline.svg'
+import facebook from 'assets/facebook.inline.svg'
+import insta from 'assets/insta.inline.svg'
 
 export function Footer() {
   const { gettext } = useLocale()
 
   return (
-    <Wrapper as="footer" id="footer" bg="background" color="secondary">
-      <ShapesContainer
-        pt={{ _: 320, md: 500 }}
-        clipPaths={clipPaths}
-        shapesHeight={{ _: 1208, md: 1079 }}
-      >
-        <Content>
-          <x.div display="flex" flexDirection={{ _: 'column', md: 'row' }}>
-            <Heading
-              size="normal"
-              maxWidth={{ lg: 'unset', md: 400 }}
-              isDark
-              dangerouslySetInnerHTML={{ __html: gettext('contact.title') }}
+    <Wrapper
+      as="footer"
+      id="footer"
+      bg="beigeClair"
+      color="secondary"
+      paddingTop="5px"
+    >
+      <Content>
+        <x.div display="flex" flexDirection={{ _: 'column', lg: 'row' }} py={5}>
+          <Link to="/" textDecoration="none" h="12rem" margin='auto'>
+            <Svg
+              asset={Logo}
+              viewBox="0 0 20688 22444"
+              height="100%"
+              width={{_:'unset', lg:'100%'}}
+              color="secondary"
+              srOnly={false}
+              title="Scaleway Datacenter"
             />
-            <Reach hasText ml={{ _: 'unset', md: 'auto' }} />
+          </Link>
+          <x.div
+            display="flex"
+            flex="1"
+            flexDirection={{ _: 'column', md: 'row' }}
+            mt={{ _: 10, lg: 'unset' }}
+          >
+            <List flex="1" mt={-1} pl={{ _: 'unset', lg: 28 }}>
+              <Hrefs />
+            </List>
+            <List flex="1" mt={-1}>
+              <x.div display="flex" justifyContent="left">
+                <Link to="/" textDecoration="none">
+                  <Svg
+                    asset={facebook}
+                    width={{ _: 50, md: 50 }}
+                    height={50}
+                    viewBox="0 0 24 24"
+                    color="marronSombre"
+                    srOnly={false}
+                    title="Scaleway Datacenter"
+                  />
+                </Link>
+                <Link to="/" textDecoration="none" ml={5}>
+                  <Svg
+                    asset={insta}
+                    width={{ _: 50, md: 50 }}
+                    height={50}
+                    viewBox="0 0 24 24"
+                    color="marronSombre"
+                    srOnly={false}
+                    title="Scaleway Datacenter"
+                  />
+                </Link>
+              </x.div>
+              <li>
+                <Link
+                  href={`https://goo.gl/maps/rrPdqgQ3DZsBnUUZ9`}
+                >
+                  {gettext('footer.adress.text')}
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href={`https://www.scaleway.com${gettext(
+                    'footer.link.legal.url',
+                  )}`}
+                >
+                  {gettext('footer.link.legal')}
+                </Link>
+              </li>
+              <li>
+                <em>
+                  &copy; {new Date().getFullYear()}{' '}
+                  {gettext('footer.copyright')}
+                </em>
+              </li>
+            </List>
           </x.div>
-          <x.hr
-            border="default"
-            borderColor="secondary"
-            mt={{ _: 16, md: 24 }}
-            mb={8}
-          />
-          <x.div display="flex" flexDirection={{ _: 'column', lg: 'row' }}>
-            <Link to="/" textDecoration="none" h={7}>
-              <Svg
-                asset={Logo}
-                width={247}
-                viewBox="0 0 247 24"
-                color="secondary"
-                srOnly={false}
-                title="Scaleway Datacenter"
-              />
-            </Link>
-            <x.div
-              display="flex"
-              flex="1"
-              flexDirection={{ _: 'column', md: 'row' }}
-              mt={{ _: 10, lg: 'unset' }}
-            >
-              <List flex="1" mt={-1} pl={{ _: 'unset', lg: 28 }}>
-                <Hrefs />
-              </List>
-              <List flex="1" mt={-1}>
-                <li>
-                  <Link
-                    href={`https://www.scaleway.com${gettext(
-                      'footer.link.privacy.url',
-                    )}`}
-                  >
-                    {gettext('footer.link.privacy')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={`https://www.scaleway.com${gettext(
-                      'footer.link.terms.url',
-                    )}`}
-                  >
-                    {gettext('footer.link.terms')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={`https://www.scaleway.com${gettext(
-                      'footer.link.legal.url',
-                    )}`}
-                  >
-                    {gettext('footer.link.legal')}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://www.scaleway.com">
-                    <em
-                      dangerouslySetInnerHTML={{
-                        __html: gettext('footer.link.discover'),
-                      }}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <em>
-                    &copy; {new Date().getFullYear()}{' '}
-                    {gettext('footer.copyright')}
-                  </em>
-                </li>
-              </List>
-              <Reach mt={{ _: 10, md: 'unset' }} />
-            </x.div>
-          </x.div>
-        </Content>
-      </ShapesContainer>
+        </x.div>
+      </Content>
     </Wrapper>
   )
 }
@@ -139,11 +113,11 @@ const List = styled(x.ul)`
       padding: 0;
     }
     &:link {
-      color: secondary;
+      color: marronSombre;
       text-decoration: none;
     }
     &:visited {
-      color: secondary-300;
+      color: marronSombre;
     }
     &:hover,
     &:focus {
@@ -157,6 +131,7 @@ const List = styled(x.ul)`
   em {
     display: block;
     padding: 2 0;
+    color: marronSombre;
     span {
       text-decoration: underline;
     }

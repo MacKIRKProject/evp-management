@@ -87,8 +87,7 @@ export function PhoneButton({ isIcon = false, tel, children, ...props }) {
       justifyContent="center"
       alignItems="center"
       borderRadius="full"
-      bg="tertiary"
-      color="background"
+      bg="marronSombre"
       {...props}
     >
       <HoverIcon asset={PhoneIcon} size={{ _: 6, md: 8 }} />

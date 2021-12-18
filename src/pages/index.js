@@ -32,10 +32,7 @@ function Localized() {
         <sections.SkipLinks />
         <sections.Header />
         <x.main id="main" bg="background">
-          <sections.KeyFigures />
-          <sections.Contact id="contact" />
-          <sections.Solutions />
-          <sections.Compliance />
+       toto
         </x.main>
         <sections.Footer />
       </ErrorBoundary>

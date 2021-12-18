@@ -1,9 +1,6 @@
-export * from './Solutions'
-export * from './Compliance'
-export * from './Clients'
+
 export * from './Contact'
 export * from './Footer'
 export * from './Head'
 export * from './Header/index'
-export * from './KeyFigures'
 export * from './SkipLinks'
