@@ -7,44 +7,39 @@ import styled, {
   up,
   useUp,
   useViewportWidth,
-  x,
 } from '@xstyled/styled-components'
 import theme from 'theme'
-
-import {
-  Content,
-  EmailButton,
-  Link,
-  PhoneButton,
-  Svg,
-  VisuallyHidden,
-} from 'components'
-
-import { useLocale } from 'contexts'
+import { x } from '@components'
 import { slugify } from 'helpers'
 
-import Logo from 'assets/logo.inline.svg'
+import Logo from 'assets/logo.png'
+import { useScreens } from '../../../node_modules/@xstyled/styled-components/dist/index'
 
-export const hrefs = [
-  'anchor.presentation',
-  'anchor.photo',
-  'anchor.privatisation',
-  'anchor.contact',
-]
+export const hrefs = ['Compétences', 'Expertises', 'Références', 'Contact']
 
 export function Hrefs({ ...props }) {
-  const { gettext } = useLocale()
-
   return (
     <>
-      {hrefs.map((intl, index) => {
-        const href = gettext(intl)
-
+      {hrefs.map((href, index) => {
         return (
-          <x.li key={index} {...props} color='red'>
-            <Link to={`#${slugify(href)}`} fontSize="default" color="red">
+          <x.li key={index} color="vertAntoine" {...props}>
+            <x.a
+              href={`#${slugify(href)}`}
+              fontSize="default"
+              px={8}
+              py={2}
+              fontWeight={400}
+              outlineOffset={{ focus: 0 }}
+              textDecoration={{
+                _: 'none',
+                hoverfocus: 'underline #118796',
+              }}
+              textDecorationThickness={{ hoverfocus: '0.5px' }}
+              textUnderlineOffset={{ hoverfocus: '6px' }}
+              outlineColor="#cbcbcb"
+            >
               {href}
-            </Link>
+            </x.a>
           </x.li>
         )
       })}
@@ -53,7 +48,7 @@ export function Hrefs({ ...props }) {
 }
 
 export function Menu() {
-  const { gettext } = useLocale()
+  const { grid } = useScreens()
   const [scrollPaused, disableScroll] = useState(false)
   const [opened, open] = useState(false)
   const [renderModale, setRenderModale] = useState(false)
@@ -61,11 +56,7 @@ export function Menu() {
   const previousScrollTop = useRef()
   const upLg = useUp('lg')
   const viewportWidth = useViewportWidth()
-console.log('scrollPaused', scrollPaused)
-console.log('opened', opened)
-console.log('renderModale', renderModale)
-console.log('shouldDisplay', shouldDisplay)
-console.log('previousScrollTop', previousScrollTop)
+
   const close = useCallback(() => {
     open(false)
     disableScroll(false)
@@ -124,35 +115,44 @@ console.log('previousScrollTop', previousScrollTop)
   }, [])
 
   return (
-    <Navbar as="nav" $shouldDisplay={shouldDisplay}>
-      <Content
+    <Navbar
+      as="nav"
+      $shouldDisplay={shouldDisplay}
+      position="fixed"
+      top={0}
+      h="45px"
+    >
+      <x.div
         display="flex"
         flex="1"
         flexDirection="row"
-        justifyContent="space-between"
+        justifyContent="right"
         alignItems="center"
         px={{ _: 4, lg: 0, md: 10 }}
-        py={{ _: 4 }}
+        py={{ _: 2, lg: 1 }}
+        position="relative"
+        maxWidth={grid}
       >
-        <Link to="/" textDecoration="none" display="flex" alignItems="center">
-          <Svg
-            asset={Logo}
-            width={{ _: 79, md: 79 }}
-            height={100}
+        <x.a
+          href="/"
+          textDecoration="none"
+          display="flex"
+          alignItems="center"
+          position="absolute"
+          left="5px"
+        >
+          <x.img
+            src={Logo}
+            height="40px"
             viewBox="0 0 10656 13434"
             color="white"
             srOnly={false}
             title="Scaleway Datacenter"
+            objectFit="contain"
+            py="1px"
           />
-          <Title>Les folies D'Edmonde</Title>
-        </Link>
+        </x.a>
         <x.div display="flex" alignItems="center" order={3}>
-          <PhoneButton tel={gettext('contact.phone.href')} isIcon mr={1}>
-            {gettext('contact.phone.label')}
-          </PhoneButton>
-          <EmailButton mailto={gettext('contact.email.href')} isIcon>
-            {gettext('contact.email.label')}
-          </EmailButton>
           <ButtonBurger
             aria-hidden="true"
             aria-expanded={opened}
@@ -161,7 +161,6 @@ console.log('previousScrollTop', previousScrollTop)
             display={{ _: 'flex', lg: 'none' }}
             alignItems="center"
             justifyContent="center"
-            ml={3.5}
             bg="transparent"
             border={0}
             borderRadius={0}
@@ -178,20 +177,17 @@ console.log('previousScrollTop', previousScrollTop)
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g>
-                  <line x1="0" y1="2" x2="24" y2="2" strokeWidth="2" />
-                  <line x1="0" y1="12" x2="24" y2="12" strokeWidth="2" />
-                  <line x1="0" y1="22" x2="24" y2="22" strokeWidth="2" />
+                  <line x1="0" y1="2" x2="24" y2="2" strokeWidth="3" />
+                  <line x1="0" y1="12" x2="24" y2="12" strokeWidth="3" />
+                  <line x1="0" y1="22" x2="24" y2="22" strokeWidth="3" />
                 </g>
 
                 <g>
-                  <line x1="0" y1="12" x2="24" y2="12" strokeWidth="2" />
-                  <line x1="0" y1="12" x2="24" y2="12" strokeWidth="2" />
+                  <line x1="0" y1="12" x2="24" y2="12" strokeWidth="3" />
+                  <line x1="0" y1="12" x2="24" y2="12" strokeWidth="3" />
                 </g>
               </svg>
             </Burger>
-            <VisuallyHidden as="span">
-              {opened ? gettext('action.close') : gettext('action.open')}
-            </VisuallyHidden>
           </ButtonBurger>
         </x.div>
         {upLg ? (
@@ -205,7 +201,7 @@ console.log('previousScrollTop', previousScrollTop)
             close={close}
           />
         )}
-      </Content>
+      </x.div>
     </Navbar>
   )
 }
@@ -216,7 +212,7 @@ function MobileModale({ opened, renderModale, close }) {
   return (
     <>
       <Overlay display={opened ? 'block' : 'none'} />
-      <MobileMenu className={classNames} top={{ _: '3.5rem', md: '4rem' }}>
+      <MobileMenu className={classNames} top="44px">
         <FocusTrap
           active={opened}
           focusTrapOptions={{ allowOutsideClick: true, preventScroll: true }}
@@ -225,6 +221,7 @@ function MobileModale({ opened, renderModale, close }) {
             id="mobile-link-list"
             className={classNames}
             mx={{ _: 4, md: 10 }}
+            mt={4}
           >
             <Hrefs onClick={close} />
           </MobileContent>
@@ -234,24 +231,17 @@ function MobileModale({ opened, renderModale, close }) {
   )
 }
 
-const Title= styled.span`
-margin-left: 5;
-font-size:1.5rem;
-font-weight: 900;
-color: marronSombre;
-`
-
-const Navbar = styled.nav`
+const Navbar = styled(x.nav)`
   width: full;
   margin-top: ${({ $shouldDisplay }) => ($shouldDisplay ? '0' : '-200px')};
   transition: margin-top 200ms;
   display: flex;
   justify-content: center;
-  position: fixed;
+
   z-index: 100;
   left: 0;
   right: 0;
-  padding: 3 0;
+  padding: 0;
   ${up(
     'lg',
     css`
@@ -259,89 +249,13 @@ const Navbar = styled.nav`
       margin: 0;
     `,
   )}
-  background-color: beigeClair;
-  backdrop-filter: blur(8px);
+  background-color: white;
 `
 
 const ListLinks = styled(x.ul)`
   position: relative;
   display: flex;
   flex-direction: row;
-  a {
-    height: full;
-    display: block;
-    padding: 6 2;
-    text-decoration: none;
-    &:link {
-      color: marronSombre;
-      text-decoration: none;
-    }
-    &:visited {
-      color: marronSombre;
-    }
-  }
-  li {
-    position: relative;
-    max-width: 64;
-    overflow: hidden;
-    display: block;
-    ::before,
-    ::after {
-      content: '';
-      bottom: 0;
-      left: 0;
-      background-color: secondary;
-      position: absolute;
-      width: full;
-      z-index: -1;
-      height: 1px;
-    }
-    ::after {
-      background-color: transparent;
-      height: 2px;
-      transition: transform 0.4s cubic-bezier(0, 0.5, 0, 1),
-        background-color 0.4s ease;
-      animation: anchor-underline 0.5s cubic-bezier(0, 0.5, 0, 1) forwards;
-    }
-    :hover,
-    :focus-within {
-      a {
-        color: marronSombre;
-      }
-      ::after {
-        animation: anchor-underline-hover 0.5s cubic-bezier(0, 0.5, 0, 1)
-          forwards;
-        background-color: marronSombre;
-      }
-    }
-    :first-of-type {
-      ::before {
-        left: 0.5rem;
-      }
-    }
-    :last-of-type {
-      ::before {
-        width: calc(100% - 0.5rem);
-      }
-    }
-  }
-
-  @keyframes anchor-underline-hover {
-    0% {
-      transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  @keyframes anchor-underline {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(100%, 0, 0);
-    }
-  }
 `
 
 const MobileMenu = styled(x.div)`
@@ -350,13 +264,13 @@ const MobileMenu = styled(x.div)`
   left: 0;
   z-index: 100;
   width: full;
-  background: linear-gradient(${theme.colors['primary-a90']}, transparent);
+  background: linear-gradient(${theme.colors['vertAntoine']}, transparent);
   overflow: hidden;
   height: 0;
   transition: height 0s ease;
   &.opened {
     transition: height 0.6s ease;
-    height: 288;
+    height: 312;
   }
 `
 const MobileContent = styled(x.ul)`
@@ -364,21 +278,25 @@ const MobileContent = styled(x.ul)`
   flex-direction: column;
   width: full;
   padding: 0 4;
-  background-color: primary;
+  background-color: vertAntoine;
   border-radius: lg;
   border-width: default;
-  border-color: gray-800;
+  border-color: vertAntoineClair;
   li {
     list-style: none;
     display: flex;
     align-items: center;
     border-bottom: 1px solid;
-    border-color: gray-800;
+    border-color: vertAntoineClair;
     a {
       width: full;
       margin: 1.2rem 0;
       &:link {
         color: secondary;
+        text-decoration: none;
+      }
+      &:visited {
+        color: white;
         text-decoration: none;
       }
     }
@@ -420,7 +338,7 @@ const Burger = styled.span`
   height: 6;
   position: relative;
   svg {
-    stroke: secondary;
+    stroke: vertAntoine;
     transition: 0.2s;
     g {
       &:first-child {

@@ -22,7 +22,7 @@ const Styled = createGlobalStyle`
   body {
     background-color: background;
     color: primary;
-    font-family: opensans;
+    font-family: epilogue;
   }
 
   @media (prefers-reduced-motion: reduce) {

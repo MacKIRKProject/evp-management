@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES6",
     "baseUrl": "./src",
     "paths": {
-      "assets/*": ["assets/*"],
-      "components/*": ["components/*"],
-      "contexts/*": ["contexts/*"],
-      "helpers/*": ["helpers/*"],
-      "layouts/*": ["layouts/*"]
-    }
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@blocks/*": ["blocks/*"],
+      "@docs/*": ["docs/*"],
+      "@contexts/*": ["contexts/*"],
+      "@helpers/*": ["helpers/*"],
+      "@hooks/*": ["hooks/*"],
+      "@layouts/*": ["layouts/*"],
+      "@pages/*": ["pages/*"],
+      "@templates/*": ["templates/*"],
+      "@utilities/*": ["utilities/*"],
+      "@plugins/*": ["../plugins/*"],
+      "@xstyled.config": ["xstyled.config.js"]
+    },
+    "target": "ES6"
   },
   "exclude": ["node_modules", "**/node_modules/*", "public/"]
 }

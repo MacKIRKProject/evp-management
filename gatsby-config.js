@@ -68,15 +68,8 @@ module.exports = {
       },
       resolve: 'gatsby-plugin-google-tagmanager',
     },
-    {
-      options: {
-        defaultLanguage: `en`,
-        languages: [`en`],
-        path: `${__dirname}/src/intl`,
-      },
-      resolve: `gatsby-plugin-intl`,
-    },
   ],
+  polyfill: false,
   siteMetadata: {
     author: '@Scaleway',
     description: 'Discover the Scaleway Datacenter offers',

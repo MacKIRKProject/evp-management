@@ -7,5 +7,5 @@ export function Link({ to = '', href = '', ...props }) {
     return <x.a href={href} {...props} />
   }
 
-  return <x.a as={IntlLink} to={to} {...props} />
+  return <x.a as={href} to={to} {...props} />
 }

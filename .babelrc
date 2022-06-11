@@ -1,12 +1,61 @@
 {
-  "presets": [[
-    "@babel/preset-env", {
-      "targets": "> 1%, last 2 versions, not IE > 0, not IE_Mob > 0",
-      "exclude": [
-        "@babel/plugin-proposal-private-methods",
-        "@babel/plugin-proposal-private-property-in-object"
-      ]
-    }],
-    "babel-preset-gatsby"
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@GlobalStyle": "./src/GlobalStyle.js",
+          "@assets": "./src/assets",
+          "@blocks": "./src/blocks",
+          "@components": "./src/components",
+          "@contexts": "./src/contexts",
+          "@docs": "./src/docs",
+          "@helpers": "./src/helpers",
+          "@hooks": "./src/hooks",
+          "@layouts": "./src/layouts",
+          "@pages": "./src/pages",
+          "@plugins": "./plugins",
+          "@templates": "./src/templates",
+          "@theme": "./src/theme.js",
+          "@utilities": "./src/utilities",
+          "@xstyled.config": "./src/xstyled.config.js"
+        }
+      }
+    ],
+    [
+      "inline-import-data-uri",
+      {
+        "extensions": [".svg", "webp"]
+      }
+    ],
+    [
+      "inline-react-svg",
+      {
+        "ignorePattern": "^((?!.inline).)*.svg$",
+        "svgo": {
+          "plugins": [
+            {
+              "name": "prefixIds",
+              "params": {
+                "prefix": "scw"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  ],
+  "presets": [
+    ["@babel/preset-react", { "runtime": "automatic" }],
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 1%, last 2 versions, not IE > 0, not IE_Mob > 0",
+        "exclude": [
+          "@babel/plugin-proposal-private-methods",
+          "@babel/plugin-proposal-private-property-in-object"
+        ]
+      }
+    ]
   ]
 }

@@ -1,6 +1,9 @@
-import '@fontsource/open-sans' // 400 normal
-import '@fontsource/poppins/600.css' // 600 semibold
-import '@fontsource/poppins/700.css' // 700 bold
+import '@fontsource/epilogue/200.css'
+import '@fontsource/epilogue/300.css'
+import '@fontsource/epilogue' // 400 normal
+import '@fontsource/epilogue/500.css'
+import '@fontsource/epilogue/600.css'
+import '@fontsource/epilogue/700.css' // 700 bold
 
 import {
   defaultTheme,
@@ -12,20 +15,32 @@ const colors = {
   brand: '#4f0599',
   'gray-300': '#d4d4d8',
   'gray-800': '#27272a',
+  orangeAntoine: '#DB723A',
   secondary: '#ffffff',
   'secondary-100': '#f4f4f5',
   'secondary-300': '#d4d4d8',
   tertiary: '#e10019',
-  marronSombre: '#a4543d',
-  marronClair: '#cd7d5f',
-  beigeSombre: '#dbaca2',
-  beigeClair: '#f1d1ba',
+  vertAntoine: '#10444B',
+  vertAntoineClair: '#118796',
 }
 
-const gradients = {
-  'background-gradient': `linear-gradient(83deg, ${colors.brand} 22%, ${colors.tertiary} 92%)`,
-  'button-gradient': `linear-gradient(270deg, ${colors.brand} -13%, ${colors.tertiary} 98%)`,
-  'lava-gradient': `linear-gradient(312deg, ${colors.brand} 0%, ${colors.tertiary} 66%, ${colors.brand} 100%)`,
+const states = {
+  ...defaultTheme.states,
+  targetSvg: '& > svg',
+  targetSvgPath: '& > svg > path',
+  firstChildAncestor: '& > :first-child',
+  lastChildAncestor: '& > :last-child',
+  beforeLastChild: '&:nth-last-child(2)',
+  hoverFocusTargetSvg: '&:hover > svg, &:focus > svg',
+  disabledTargetSvg: '&:disabled svg, &[aria-disabled=true] svg',
+  hackLinkState: '',
+  hoverfocus: '&:hover, &:focus',
+  focuswithin: '&:focus-within',
+}
+
+const screens = {
+  ...defaultTheme.screens,
+  grid: 1040,
 }
 
 const colorWithAlpha = {
@@ -41,10 +56,8 @@ const colorWithAlpha = {
 /* eslint-env es6 */
 const fonts = {
   ...defaultTheme.fonts,
-  opensans:
-    'Open Sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-  poppins:
-    'Poppins, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  epilogue:
+    'Epilogue, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 }
 
 const fontSizes = {
@@ -80,11 +93,13 @@ const radii = {
 
 const theme = {
   ...defaultTheme,
-  colors: { ...gradients, ...colors, ...colorWithAlpha },
+  colors: { ...colors, ...colorWithAlpha },
   fontSizes,
   fonts,
   radii,
+  screens,
   shadows,
+  states,
   transforms,
   transitions,
 }

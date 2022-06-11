@@ -1,6 +1,6 @@
-
-export * from './Contact'
+export * from './Competence'
+export * from './Expertise'
 export * from './Footer'
 export * from './Head'
 export * from './Header/index'
-export * from './SkipLinks'
+export * from './Reference'
