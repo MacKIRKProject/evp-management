@@ -5,6 +5,7 @@ import {
   outlineOffset,
   textUnderlineOffset,
   textDecorationThickness,
+  fontVariant,
 } from './utilities'
 
 const css = createCss(
@@ -15,6 +16,7 @@ const css = createCss(
     outlineColor,
     textUnderlineOffset,
     textDecorationThickness,
+    fontVariant,
   ),
 )
 

@@ -14,8 +14,8 @@ export default function App() {
       <sections.Head title="head.title" description="head.description" />
       <sections.Header />
       <x.main id="main">
+        <sections.Scope />
         <sections.Competence />
-        <sections.Expertise />
         <sections.Reference />
       </x.main>
       <sections.Footer />

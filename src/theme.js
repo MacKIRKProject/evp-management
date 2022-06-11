@@ -1,9 +1,9 @@
-import '@fontsource/epilogue/200.css'
-import '@fontsource/epilogue/300.css'
-import '@fontsource/epilogue' // 400 normal
-import '@fontsource/epilogue/500.css'
-import '@fontsource/epilogue/600.css'
-import '@fontsource/epilogue/700.css' // 700 bold
+import '@fontsource/open-sans/300.css'
+import '@fontsource/open-sans' // 400 normal
+import '@fontsource/open-sans/500.css'
+import '@fontsource/open-sans/600.css'
+import '@fontsource/open-sans/700.css' // 700 bold
+import '@fontsource/open-sans/800.css' // 700 bold
 
 import {
   defaultTheme,
@@ -13,6 +13,7 @@ import {
 const colors = {
   background: '#ffffff',
   brand: '#4f0599',
+  dark: '#0f111a',
   'gray-300': '#d4d4d8',
   'gray-800': '#27272a',
   orangeAntoine: '#DB723A',

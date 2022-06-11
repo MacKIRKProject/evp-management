@@ -1,5 +1,5 @@
 export * from './Competence'
-export * from './Expertise'
+export * from './Scope'
 export * from './Footer'
 export * from './Head'
 export * from './Header/index'

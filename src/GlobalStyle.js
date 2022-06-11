@@ -76,10 +76,10 @@ const Styled = createGlobalStyle`
   a {
     font-size: 1em;
     text-underline-offset: 1.5px;
-    &:active,
+    /* &:active,
     &:visited {
       color: inherit;
-    }
+    } */
   }
   
   a {

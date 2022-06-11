@@ -15,28 +15,41 @@ import { slugify } from 'helpers'
 import Logo from 'assets/logo.png'
 import { useScreens } from '../../../node_modules/@xstyled/styled-components/dist/index'
 
-export const hrefs = ['Compétences', 'Expertises', 'Références', 'Contact']
+export const hrefs = [
+  'Notre Périmètre',
+  'Nos Compétances',
+  'Nos Projets',
+  'Nous Contacter',
+]
 
 export function Hrefs({ ...props }) {
   return (
     <>
       {hrefs.map((href, index) => {
         return (
-          <x.li key={index} color="vertAntoine" {...props}>
+          <x.li key={index} {...props}>
             <x.a
               href={`#${slugify(href)}`}
               fontSize="default"
+              fontVariant="all-petite-caps"
               px={8}
               py={2}
-              fontWeight={400}
+              fontWeight={600}
+              letterSpacing={{ _: '1px', lg: '0px' }}
               outlineOffset={{ focus: 0 }}
               textDecoration={{
                 _: 'none',
-                hoverfocus: 'underline #118796',
+                lg: {
+                  hoverfocus: 'underline #118796',
+                },
               }}
-              textDecorationThickness={{ hoverfocus: '0.5px' }}
-              textUnderlineOffset={{ hoverfocus: '6px' }}
+              textDecorationThickness={{
+                _: 'none',
+                lg: { hoverfocus: '0.5px' },
+              }}
+              textUnderlineOffset={{ _: 'none', lg: { hoverfocus: '0.5px' } }}
               outlineColor="#cbcbcb"
+              color={{ _: 'white', lg: 'vertAntoine' }}
             >
               {href}
             </x.a>
@@ -120,7 +133,8 @@ export function Menu() {
       $shouldDisplay={shouldDisplay}
       position="fixed"
       top={0}
-      h="45px"
+      h="58px"
+      bg="white"
     >
       <x.div
         display="flex"
@@ -150,6 +164,7 @@ export function Menu() {
             title="Scaleway Datacenter"
             objectFit="contain"
             py="1px"
+            ml={{ _: '10px', lg: 0 }}
           />
         </x.a>
         <x.div display="flex" alignItems="center" order={3}>
@@ -212,7 +227,7 @@ function MobileModale({ opened, renderModale, close }) {
   return (
     <>
       <Overlay display={opened ? 'block' : 'none'} />
-      <MobileMenu className={classNames} top="44px">
+      <MobileMenu className={classNames} top="50px">
         <FocusTrap
           active={opened}
           focusTrapOptions={{ allowOutsideClick: true, preventScroll: true }}
@@ -249,7 +264,6 @@ const Navbar = styled(x.nav)`
       margin: 0;
     `,
   )}
-  background-color: white;
 `
 
 const ListLinks = styled(x.ul)`
@@ -264,7 +278,9 @@ const MobileMenu = styled(x.div)`
   left: 0;
   z-index: 100;
   width: full;
-  background: linear-gradient(${theme.colors['vertAntoine']}, transparent);
+  /* background: linear-gradient(${theme.colors[
+    'vertAntoine'
+  ]}, transparent); */
   overflow: hidden;
   height: 0;
   transition: height 0s ease;
@@ -279,7 +295,7 @@ const MobileContent = styled(x.ul)`
   width: full;
   padding: 0 4;
   background-color: vertAntoine;
-  border-radius: lg;
+  border-radius: 18px;
   border-width: default;
   border-color: vertAntoineClair;
   li {
@@ -291,14 +307,6 @@ const MobileContent = styled(x.ul)`
     a {
       width: full;
       margin: 1.2rem 0;
-      &:link {
-        color: secondary;
-        text-decoration: none;
-      }
-      &:visited {
-        color: white;
-        text-decoration: none;
-      }
     }
     :last-of-type {
       border: none;

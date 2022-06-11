@@ -18,7 +18,7 @@
     "format": "yarn run prettier --config .prettierrc --write \"**/*.{js,json}\""
   },
   "dependencies": {
-    "@fontsource/epilogue": "^4.5.8",
+    "@fontsource/open-sans": "^4.5.10",
     "@loadable/component": "^5.15.0",
     "@xstyled/styled-components": "^3.0.3",
     "babel-plugin-inline-import-data-uri": "^1.0.1",
