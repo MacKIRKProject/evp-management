@@ -5,6 +5,7 @@ export function Grid({ as = 'section', ...props }) {
 
   return (
     <x.div
+      bg="white"
       as={as}
       position="relative"
       display="grid"

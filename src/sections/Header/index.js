@@ -6,14 +6,14 @@ import { Area } from '@components/Area'
 
 export function Header() {
   return (
-    <Container as="header" id="header" bg="white" color="white" h="fit-content">
+    <Container as="header" id="header" color="white" bg="white" h="fit-content">
       <Menu />
-      <Grid pt="58px" border="1px solid red">
+      <Grid pt="58px" bg="back">
         <Area>
           <x.h1
             color="vertAntoineClair"
             textAlign="center"
-            fontSize={{ _: '32px', sm: '40px', lg: '64px' }}
+            fontSize={{ _: '40px', sm: '64px', lg: '72px' }}
             m="auto"
             maxWidth="700px"
             mt={8}

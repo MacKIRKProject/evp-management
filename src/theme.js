@@ -23,6 +23,7 @@ const colors = {
   tertiary: '#e10019',
   vertAntoine: '#10444B',
   vertAntoineClair: '#118796',
+  back: '#db723a26',
 }
 
 const states = {

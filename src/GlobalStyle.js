@@ -10,7 +10,7 @@ const Styled = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
   html {
-    background-color: primary;
+    background-color: white;
     ${up(
       'lg',
       css`
@@ -20,7 +20,7 @@ const Styled = createGlobalStyle`
   }
 
   body {
-    background-color: background;
+    background-color: #db723a26;
     color: primary;
     font-family: epilogue;
   }
@@ -76,10 +76,6 @@ const Styled = createGlobalStyle`
   a {
     font-size: 1em;
     text-underline-offset: 1.5px;
-    /* &:active,
-    &:visited {
-      color: inherit;
-    } */
   }
   
   a {

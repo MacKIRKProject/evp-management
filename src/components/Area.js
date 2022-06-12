@@ -10,8 +10,9 @@ function AreaWithRef({ children, _, sm, lg, ...props }, ref) {
       gridArea={{
         _: _ || 'auto / 1 / auto / 3',
         sm: sm || 'auto / 1 / auto / 9',
-        lg: lg || 'auto / 1 / auto / 13',
+        lg: lg || 'auto / 2 / auto / 12',
       }}
+      px={{ _: 4, lg: 0 }}
       {...props}
     >
       {children}
