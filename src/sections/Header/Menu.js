@@ -17,7 +17,7 @@ import { useScreens } from '../../../node_modules/@xstyled/styled-components/dis
 
 export const hrefs = [
   'Notre Périmètre',
-  'Nos Compétances',
+  'Nos Compétences',
   'Nos Projets',
   'Nous Contacter',
 ]
