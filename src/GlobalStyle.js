@@ -20,7 +20,7 @@ const Styled = createGlobalStyle`
   }
 
   body {
-    background-color: #db723a26;
+    background-color: back;
     color: primary;
     font-family: epilogue;
   }

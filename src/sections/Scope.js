@@ -38,8 +38,8 @@ const data = [
 ]
 export function Scope() {
   return (
-    <Container h={1000} id="scope">
-      <Grid as="div" rowGap="48px">
+    <Container h="fit-content" id="scope" pb={8} bg="white">
+      <Grid as="div" rowGap="48px" overflow="hidden" pb={8}>
         <Area position="relative" mt={8}>
           <x.h2
             fontSize={{ _: '32px', lg: '48px', sm: '40px' }}
@@ -64,6 +64,7 @@ export function Scope() {
                 _: getGrid('_', index),
               }}
               px={{ _: 4, lg: 0 }}
+              pb={8}
             >
               <x.h3 fontSize={{ _: '16px', sm: '24px' }} color="dark">
                 {title}
@@ -103,6 +104,7 @@ const getGrid = (breakpoint, index, image = false) => {
   return `${row} / 1 / ${row} / 3`
 }
 const Dot = styled(x.div)`
+  z-index: 1;
   width: 0.75em;
   height: 0.75em;
   border-radius: 100%;
@@ -110,7 +112,7 @@ const Dot = styled(x.div)`
   border: 0.15em solid;
   border-color: vertAntoineClair;
   position: fixed;
-  top: 50%;
+  top: 48%;
   left: 98%;
   @media (min-width: sm) {
     left: 50%;
@@ -122,7 +124,7 @@ const Line = styled(x.div)`
   position: absolute;
   width: 0.15em;
   margin-left: -0.075em;
-  height: 1000px;
+  height: 888px;
   left: 98%;
   @media (min-width: sm) {
     left: 50%;
@@ -138,7 +140,21 @@ const Content = styled(x.div)`
     border-radius: 50%;
     background-color: vertAntoine;
     left: 50%;
-    margin-left: -0.5em;
+    margin-left: -8px;
+    z-index: 1;
+    margin-top: -25px;
+  }
+
+  &:last-of-type:after {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: vertAntoine;
+    left: 50%;
+    bottom: 0px;
+    margin-left: -8px;
     z-index: 1;
     margin-top: -25px;
   }
