@@ -1,3 +1,4 @@
+export * from './AboutUs'
 export * from './Competence'
 export * from './Scope'
 export * from './Footer'

@@ -27,7 +27,7 @@ export function Svg({
     <x.svg
       aria-hidden={srOnly}
       focusable={!srOnly}
-      preserveAspectRatio="none"
+      preserveAspectRatio
       minWidth={w}
       minHeight={h}
       maxWidth={w}

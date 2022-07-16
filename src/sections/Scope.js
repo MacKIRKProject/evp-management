@@ -1,161 +1,70 @@
 import React from 'react'
-import { Area, Container, Grid, x } from '@components'
+import { Area, Container, Grid, MainTitle, Svg, x } from '@components'
 import styled, { css } from '@xstyled/styled-components'
-const data = [
-  {
-    dots: [
-      'Définition et mise en place de KPI',
-      'Gestion de la performance (EPM)',
-      'Etudes stratégiques',
-      'Audit',
-      'Définission des macro-processus',
-    ],
-    title: 'Strategie',
-  },
-  {
-    dots: [
-      'Définition des processus (pilotage des investissements / gestion des référentiels / gestion de configuration / gestion documentaire...)',
-      'Feuilles de route projet / feuilles de route SI',
-      'PMP',
-      'Paramétrage / admin des outils ',
-      "Déploiement d'outil",
-      'PMO',
-      "Accompagnement au choix d'outil / Benshmark / rédaction de cahier des charges",
-      'Rédaction de documents organisationnels (IG...)',
-    ],
-    title: 'Organisation',
-  },
-  {
-    dots: [
-      'Chefferie de projets / Programmes',
-      'Planification',
-      'Gestion des coûts',
-      'Gestion des risques',
-      'Gestion des plans de charge',
-    ],
-    title: 'Opérationel',
-  },
-]
+import Strategy from '@assets/icons/strategy.inline.svg'
+
 export function Scope() {
   return (
-    <Container h="fit-content" id="scope" pb={8} bg="white">
-      <Grid as="div" rowGap="48px" overflow="hidden" pb={8}>
+    <Container h="fit-content" id="scope" border="1px solid red">
+      <Grid>
         <Area position="relative" mt={8}>
-          <x.h2
-            fontSize={{ _: '32px', lg: '48px', sm: '40px' }}
-            color="vertAntoine"
-            mb={8}
-          >
-            Notre périmètre
-          </x.h2>
-        </Area>
-        <Area gridRow="2 !important" mt="-12px">
-          <Line>
-            <Dot />
-          </Line>
+          <MainTitle title="Notre périmètre" />
         </Area>
 
-        {data.map(({ title, dots }, index) => (
-          <>
-            <Content
-              gridArea={{
-                lg: getGrid('lg', index),
-                sm: getGrid('sm', index),
-                _: getGrid('_', index),
-              }}
-              px={{ _: 4, lg: 0 }}
-              pb={8}
-            >
-              <x.h3 fontSize={{ _: '16px', sm: '24px' }} color="dark">
-                {title}
-              </x.h3>
-              <ul>
-                {dots.map(item => (
-                  <x.li fontSize="16px">{item}</x.li>
-                ))}
-              </ul>
-            </Content>
-            <x.img
-              display={{ _: 'none', sm: 'block' }}
-              src="https://picsum.photos/200/200"
-              gridArea={{
-                lg: getGrid('lg', index, true),
-                sm: getGrid('sm', index, true),
-              }}
-              px={{ _: 4, sm: 0 }}
-              m="auto"
-            />
-          </>
-        ))}
+        <Area position="relative" mt={8} mx="auto">
+          <Card direction="top" />
+          <Card direction="left" mt="-31px" ml="150px" />
+          <Card direction="left" mt="-31px" ml="300px" />
+        </Area>
       </Grid>
     </Container>
   )
 }
-const getGrid = (breakpoint, index, image = false) => {
-  const row = index + 2
-  if (breakpoint === 'lg')
-    return (index + (image ? 1 : 0)) % 2
-      ? `${row} / 8 / ${row} / 12`
-      : `${row} / 2 / ${row} / 6`
-  if (breakpoint === 'sm')
-    return (index + (image ? 1 : 0)) % 2
-      ? `${row} / 5 / ${row} / 9`
-      : `${row} / 1 / ${row} / 5`
-  return `${row} / 1 / ${row} / 3`
+const Card = ({ direction = 'top', size = 150, ...props }) => {
+  return (
+    <x.div display="flex" {...props}>
+      <SvgContainer $direction={direction} $size={size} mt={4}>
+        <Svg
+          asset={Strategy}
+          viewBox="0 0 450 511.99"
+          width={`${size}px`}
+          height={`${size}px`}
+          stroke="vertAntoineClair"
+          strokeWidth="15px"
+          fill="transparent"
+          top="0"
+          borderRadius="50%"
+          borderWidth={`${size / 10}px`}
+          borderColor="vertAntoine"
+        />
+      </SvgContainer>
+      <x.div ml={4} pt={6}>
+        <x.h3 fontSize="23px" fontWeight="600">
+          Strategie
+        </x.h3>
+        <x.ul pl={2} mt={2}>
+          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
+          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
+          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
+          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
+        </x.ul>
+      </x.div>
+    </x.div>
+  )
 }
-const Dot = styled(x.div)`
-  z-index: 1;
-  width: 0.75em;
-  height: 0.75em;
-  border-radius: 100%;
-  background: white;
-  border: 0.15em solid;
-  border-color: vertAntoineClair;
-  position: fixed;
-  top: 48%;
-  left: 98%;
-  @media (min-width: sm) {
-    left: 50%;
-  }
-  margin-left: -0.375em;
-`
 
-const Line = styled(x.div)`
-  position: absolute;
-  width: 0.15em;
-  margin-left: -0.075em;
-  height: 888px;
-  left: 98%;
-  @media (min-width: sm) {
-    left: 50%;
-  }
-  background-color: vertAntoineClair;
-`
-const Content = styled(x.div)`
-  :before {
+const SvgContainer = styled(x.div)`
+  position: relative;
+
+  &:before {
     content: '';
     position: absolute;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
+    ${({ $direction, $size }) => css`
+      top: ${$direction === 'top' ? `-${$size / 2}px` : '0'};
+      left: ${$direction === 'top' ? '0' : `-${$size / 2}px`};
+      width: ${$direction === 'top' ? `${$size / 10}px` : `${$size}px`};
+      height: ${$direction === 'top' ? `${$size}px` : `${$size / 10}px`};
+    `}
     background-color: vertAntoine;
-    left: 50%;
-    margin-left: -8px;
-    z-index: 1;
-    margin-top: -25px;
-  }
-
-  &:last-of-type:after {
-    content: '';
-    position: absolute;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    background-color: vertAntoine;
-    left: 50%;
-    bottom: 0px;
-    margin-left: -8px;
-    z-index: 1;
-    margin-top: -25px;
   }
 `
