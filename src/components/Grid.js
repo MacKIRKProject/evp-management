@@ -1,6 +1,6 @@
 import { useScreens, x } from '@xstyled/styled-components'
 
-export function Grid({ as = 'section', ...props }) {
+export function Grid({ as = 'div', ...props }) {
   const breakpoints = useScreens()
 
   return (

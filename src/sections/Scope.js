@@ -2,51 +2,132 @@ import React from 'react'
 import { Area, Container, Grid, MainTitle, Svg, x } from '@components'
 import styled, { css } from '@xstyled/styled-components'
 import Strategy from '@assets/icons/strategy.inline.svg'
+import { useResponsive } from '@hooks/useResponsive'
+
+const card1 = {
+  dots: [
+    'Définition et mise en place de KPI',
+    'Gestion de la performance (EPM)',
+    'Etudes stratégiques & Audit',
+    'Définission des macro-processus',
+  ],
+  title: 'Strategie',
+}
+const card2 = {
+  dots: [
+    'Définition des processus (investissements, référentiels, gestion ...)',
+    'Feuilles de route projet / feuilles de route SI',
+    "Déploiement d'outil / PMO / PMP",
+    "Accompagnement au choix d'outil / Benshmark / rédaction de cahier des charges",
+  ],
+  title: 'Organisation',
+}
+const card3 = {
+  dots: [
+    'Chefferie de projets / Programmes',
+    'Planification',
+    'Gestion des coûts / risques',
+    'Gestion des risques',
+  ],
+  title: 'Opérationel',
+}
 
 export function Scope() {
+  const [isDesktop] = useResponsive()
+  const defautlSize = isDesktop ? 150 : 50
+
   return (
-    <Container h="fit-content" id="scope" border="1px solid red">
+    <ContainerStyled h="fit-content" id="scope" bg="white" pb={8}>
       <Grid>
         <Area position="relative" mt={8}>
           <MainTitle title="Notre périmètre" />
+          {/* <x.p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </x.p> */}
         </Area>
 
-        <Area position="relative" mt={8} mx="auto">
-          <Card direction="top" />
-          <Card direction="left" mt="-31px" ml="150px" />
-          <Card direction="left" mt="-31px" ml="300px" />
+        <Area
+          position="relative"
+          mt={{ _: 0, lg: 8 }}
+          p={0}
+          sm="auto / 2 / auto / 9"
+          lg="auto / 2 / auto / 13"
+        >
+          <Card direction="top" size={defautlSize} data={card1} />
+          <Card
+            id="card"
+            direction="left"
+            mt={{ _: 8, sm: 8, lg: '-26px' }}
+            ml={{
+              _: 0,
+              sm: `118px`,
+              lg: `219px`,
+            }}
+            size={defautlSize}
+            data={card2}
+          />
+          <Card
+            direction="left"
+            mt={{ _: 8, sm: 8, lg: '-26px' }}
+            ml={{
+              _: 0,
+              sm: `236px`,
+              lg: `422px`,
+            }}
+            size={defautlSize}
+            data={card3}
+          />
         </Area>
       </Grid>
-    </Container>
+    </ContainerStyled>
   )
 }
-const Card = ({ direction = 'top', size = 150, ...props }) => {
+const Card = ({
+  direction = 'top',
+  size = 150,
+  data: { title, dots },
+  ...props
+}) => {
   return (
-    <x.div display="flex" {...props}>
-      <SvgContainer $direction={direction} $size={size} mt={4}>
+    <x.div
+      display="flex"
+      alignItems={{ _: 'left', sm: 'top', lg: 'unset' }}
+      flexDirection={{ _: 'column', sm: 'row' }}
+      ml={{ _: 0, lg: 4 }}
+      px={{ _: 4, sm: 0 }}
+      position="relative"
+      justifyContent={{ _: 'center', sm: 'unset' }}
+      {...props}
+    >
+      <SvgContainer
+        $direction={direction}
+        $size={size}
+        mt={{ _: 0, lg: 4 }}
+        w={`${size}px`}
+        h={`${size}px`}
+        borderRadius="50%"
+        borderWidth={{ _: 0, lg: `${size / 15}px` }}
+        borderColor="vertAntoine"
+      >
         <Svg
           asset={Strategy}
           viewBox="0 0 450 511.99"
-          width={`${size}px`}
-          height={`${size}px`}
           stroke="vertAntoineClair"
           strokeWidth="15px"
           fill="transparent"
+          size={{ _: 50, lg: 100 }}
           top="0"
-          borderRadius="50%"
-          borderWidth={`${size / 10}px`}
-          borderColor="vertAntoine"
         />
       </SvgContainer>
-      <x.div ml={4} pt={6}>
+      <x.div pt={{ _: 4, sm: '10px', lg: '21px' }} ml={{ lg: '-44px' }}>
         <x.h3 fontSize="23px" fontWeight="600">
-          Strategie
+          {title}
         </x.h3>
-        <x.ul pl={2} mt={2}>
-          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
-          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
-          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
-          <x.li fontSize="16px">- Things Things Things Things Things</x.li>
+        <x.ul mt={2} lineHeight="snug">
+          {dots.map(text => (
+            <x.li fontSize="16px">- {text}</x.li>
+          ))}
         </x.ul>
       </x.div>
     </x.div>
@@ -54,17 +135,39 @@ const Card = ({ direction = 'top', size = 150, ...props }) => {
 }
 
 const SvgContainer = styled(x.div)`
-  position: relative;
-
+  position: absolute;
+  right: 16px;
+  top: -5px;
+  @media (min-width: sm) {
+    position: absolute;
+    left: -64px;
+    top: 0;
+  }
+  @media (min-width: lg) {
+    position: relative;
+    box-shadow: inset 0 0 2px #10444b, 0 0 2px #10444b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &:before {
     content: '';
+
     position: absolute;
-    ${({ $direction, $size }) => css`
-      top: ${$direction === 'top' ? `-${$size / 2}px` : '0'};
-      left: ${$direction === 'top' ? '0' : `-${$size / 2}px`};
-      width: ${$direction === 'top' ? `${$size / 10}px` : `${$size}px`};
-      height: ${$direction === 'top' ? `${$size}px` : `${$size / 10}px`};
-    `}
     background-color: vertAntoine;
+    top: -999;
+    @media (min-width: lg) {
+      ${({ $direction, $size }) => css`
+        top: ${$direction === 'top' ? `-178px` : '-10px'};
+        left: ${$direction === 'top' ? '-10px' : `-134px`};
+        width: ${$direction === 'top' ? `${$size / 15}px` : `193px`};
+        height: ${$direction === 'top' ? `245px` : `10px`};
+      `}
+    }
   }
+`
+
+const ContainerStyled = styled(Container)`
+  box-shadow: 0 0 32px -32px #10444b;
+  border-radius: 20px;
 `

@@ -6,12 +6,14 @@ export function Footer() {
   return (
     <x.div
       maxWidth={grid}
-      display="flex"
-      flexDirection={{ _: 'column', lg: 'row' }}
       py={5}
       m="auto"
+      color="grey"
+      textAlign="center"
+      w="100%"
+      fontSize="12px"
     >
-      FOOTER
+      © 2022 – EVP Management
     </x.div>
   )
 }

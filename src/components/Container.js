@@ -8,9 +8,7 @@ export function Container({ children, as, ...props }) {
     <x.div
       as={as || 'section'}
       maxWidth={{
-        lg: 960,
-        lgGap: breakpoints.grid,
-        xl: breakpoints.grid,
+        lg: 1040,
       }}
       m="auto"
       {...props}

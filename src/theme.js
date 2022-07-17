@@ -24,7 +24,7 @@ const colors = {
   vertAntoine: '#10444B',
   vertAntoineClair: '#118796',
   // back: 'white',
-  back: '#db723a08',
+  back: '#db723a05',
 }
 
 const states = {
