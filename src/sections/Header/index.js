@@ -15,7 +15,7 @@ export function Header() {
       maxWidth="unset"
     >
       <Menu />
-      <Grid pt="58px" bg="none" py={16}>
+      <Grid bg="none" py={12}>
         <Area lg="auto / 1 / auto / 13">
           <x.h1
             color="vertAntoineClair"
@@ -32,7 +32,6 @@ export function Header() {
             color="dark"
             m="auto"
             mt={4}
-            mb={9}
           >
             Nous vous accompagnons pour vos projets
           </x.p>
@@ -41,6 +40,3 @@ export function Header() {
     </Container>
   )
 }
-const ContainerStyled = styled(Container)`
-  background-image: url('https://picsum.photos/2000/600');
-`

@@ -11,7 +11,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Preflight />
       <GlobalStyle />
-      <sections.Head title="head.title" description="head.description" />
+      <sections.Head title="EVP Management" description="head.description" />
       <sections.Header />
       <x.main id="main" bg="background">
         toto

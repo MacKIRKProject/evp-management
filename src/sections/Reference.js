@@ -129,7 +129,7 @@ export function Reference() {
               m="auto"
               ref={el => (contentRef.current[index] = el)}
             >
-              <x.h3 fontSize={{ _: '16px', sm: '24px' }} color="dark">
+              <x.h3 fontSize={{ _: '16px', sm: '24px' }} color="vertAntoine">
                 {title}
               </x.h3>
               <x.ul lineHeight="snug" pt={2}>

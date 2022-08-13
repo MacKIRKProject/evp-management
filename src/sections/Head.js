@@ -11,7 +11,7 @@ export function Head({ title = '', description = '' }) {
       htmlAttributes={{
         lang: 'en',
       }}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s `}
       defaultTitle={site.siteMetadata.title}
       link={[
         {

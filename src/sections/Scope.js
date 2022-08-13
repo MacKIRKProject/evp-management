@@ -34,7 +34,7 @@ const card3 = {
 
 export function Scope() {
   const [isDesktop] = useResponsive()
-  const defautlSize = isDesktop ? 150 : 50
+  const defautlSize = isDesktop ? 175 : 50
 
   return (
     <ContainerStyled h="fit-content" bg="white" pb={8}>
@@ -118,12 +118,12 @@ const Card = ({
           stroke="vertAntoineClair"
           strokeWidth="15px"
           fill="transparent"
-          size={{ _: 50, lg: 100 }}
+          size={{ _: 50, lg: 125 }}
           top="0"
         />
       </SvgContainer>
       <x.div pt={{ _: 4, sm: '10px', lg: '21px' }} ml={{ lg: '-44px' }}>
-        <x.h3 fontSize="23px" fontWeight="600">
+        <x.h3 fontSize="23px" fontWeight="600" color="vertAntoine">
           {title}
         </x.h3>
         <x.ul mt={2} lineHeight="snug">
@@ -160,10 +160,12 @@ const SvgContainer = styled(x.div)`
     top: -999;
     @media (min-width: lg) {
       ${({ $direction, $size }) => css`
-        top: ${$direction === 'top' ? `-178px` : '-10px'};
-        left: ${$direction === 'top' ? '-10px' : `-134px`};
-        width: ${$direction === 'top' ? `${$size / 15}px` : `193px`};
-        height: ${$direction === 'top' ? `245px` : `10px`};
+        top: ${$direction === 'top' ? `-179px` : '-11px'};
+        left: ${$direction === 'top' ? '-11px' : `-126px`};
+        width: ${$direction === 'top'
+          ? `${Math.trunc($size / 15)}px`
+          : `206px`};
+        height: ${$direction === 'top' ? `259px` : `10px`};
       `}
     }
   }
