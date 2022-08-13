@@ -3,9 +3,9 @@ import { useScreens, useViewportWidth } from '@xstyled/styled-components'
 
 export function useResponsive(
   initialValue = {
-    desktop: false,
+    desktop: true,
     tablet: false,
-    mobile: true,
+    mobile: false,
   },
 ) {
   const viewportWidth = useViewportWidth()

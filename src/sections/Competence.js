@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Area, Container, Grid, Svg, MainTitle, x } from '@components'
 import Curve from '@assets/icons/curve.inline.svg'
 import styled, { css } from '@xstyled/styled-components'
@@ -49,7 +49,7 @@ export function Competence() {
     >
       <Grid borderRadius="20px">
         <Area position="relative" my={8}>
-          <MainTitle title="Nos Compétences" />
+          <MainTitle title="Nos Compétences" id="skills" />
           <x.p lineHeight="snug">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -132,9 +132,9 @@ export function Competence() {
           <x.div
             bg="vertAntoine"
             borderRadius="21px"
-            px={{ _: '12px', sm: 6 }}
+            px={{ _: '24px', sm: 6 }}
             mx={{ _: -2, sm: -6 }}
-            py={8}
+            py={{ _: 4, sm: 8 }}
             mt={{ _: '40px', sm: '66px' }}
             zIndex={0}
             position="relative"

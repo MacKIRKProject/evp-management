@@ -15,21 +15,22 @@ import { slugify } from 'helpers'
 import Logo from 'assets/logo.png'
 import { useScreens } from '../../../node_modules/@xstyled/styled-components/dist/index'
 
-export const hrefs = [
-  'Notre Périmètre',
-  'Nos Compétences',
-  'Nos Projets',
-  'Nous Contacter',
-]
+export const hrefs = {
+  scope: 'Notre Périmètre',
+  skills: 'Nos Compétences',
+  projects: 'Nos Projets',
+  about: 'A Propos',
+  'mailto:ADX@EVp-mgmt.fr': 'Nous Contacter',
+}
 
 export function Hrefs({ ...props }) {
   return (
     <>
-      {hrefs.map((href, index) => {
+      {Object.entries(hrefs).map(([href, label], index) => {
         return (
           <x.li key={index} {...props}>
             <x.a
-              href={`#${slugify(href)}`}
+              href={label === 'Nous Contacter' ? href : `#${href}`}
               fontSize="default"
               fontVariant="all-petite-caps"
               px={8}
@@ -51,7 +52,7 @@ export function Hrefs({ ...props }) {
               outlineColor="#cbcbcb"
               color={{ _: 'white', lg: 'vertAntoine' }}
             >
-              {href}
+              {label}
             </x.a>
           </x.li>
         )

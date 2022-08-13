@@ -37,10 +37,10 @@ export function Scope() {
   const defautlSize = isDesktop ? 150 : 50
 
   return (
-    <ContainerStyled h="fit-content" id="scope" bg="white" pb={8}>
+    <ContainerStyled h="fit-content" bg="white" pb={8}>
       <Grid>
         <Area position="relative" mt={8}>
-          <MainTitle title="Notre périmètre" />
+          <MainTitle title="Notre périmètre" id="scope" />
           {/* <x.p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -54,8 +54,9 @@ export function Scope() {
           sm="auto / 2 / auto / 9"
           lg="auto / 2 / auto / 13"
         >
-          <Card direction="top" size={defautlSize} data={card1} />
+          <Card key={1} direction="top" size={defautlSize} data={card1} />
           <Card
+            key={2}
             id="card"
             direction="left"
             mt={{ _: 8, sm: 8, lg: '-26px' }}
@@ -68,6 +69,7 @@ export function Scope() {
             data={card2}
           />
           <Card
+            key={3}
             direction="left"
             mt={{ _: 8, sm: 8, lg: '-26px' }}
             ml={{

@@ -1,9 +1,9 @@
 import React from 'react'
-import { x } from '@components'
+import styled, { x } from '@xstyled/styled-components'
 
 export function MainTitle({ title, ...props }) {
   return (
-    <x.h2
+    <Title
       fontSize={{ _: '32px', lg: '48px', sm: '40px' }}
       color="vertAntoine"
       mb={8}
@@ -11,6 +11,19 @@ export function MainTitle({ title, ...props }) {
       {...props}
     >
       {title}
-    </x.h2>
+    </Title>
   )
 }
+
+const Title = styled(x.h2)`
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    position: relative;
+    width: 0;
+    height: 2em;
+    margin-top: -2em;
+  }
+`

@@ -27,14 +27,14 @@ const Styled = createGlobalStyle`
 
   @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: auto;
+      scroll-behavior: smooth;
     }
     *, ::before, ::after {
       animation-delay: -1ms !important;
       animation-duration: 1ms !important;
       animation-iteration-count: 1 !important;
       background-attachment: initial !important;
-      scroll-behavior: auto !important;
+      scroll-behavior: smooth !important;
       transition-duration: 0s !important;
       transition-delay: 0s !important;
     }
@@ -97,17 +97,24 @@ const Styled = createGlobalStyle`
   }
   
   @keyframes fadein-totop {
+    0% { opacity: 0; transform: translate3d(0, -4rem, 0); }
+    /* 60% { opacity: 1; } */
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+    @keyframes fadein-tobot {
     0% { opacity: 0; transform: translate3d(0, 4rem, 0); }
-    60% { opacity: 1; }
+    /* 60% { opacity: 0; } */
     100% { opacity: 1; transform: translate3d(0, 0, 0); }
   }
 
   .fadein-animation {
-    animation-delay: 440ms;
     will-change: opacity, transform;
   }
   .fadein-totop {
-    animation: fadein-totop 720ms cubic-bezier(0.6, 0.97, 0.72, 0.92) forwards;
+    animation: fadein-totop 400ms ease  normal both running;
+  }
+    .fadein-tobot {
+    animation: fadein-tobot 400ms ease 200ms normal both running;
   }
 
   @media (prefers-reduced-motion: reduce) {

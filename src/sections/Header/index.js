@@ -7,7 +7,7 @@ import { Area } from '@components/Area'
 
 export function Header() {
   return (
-    <ContainerStyled
+    <Container
       as="header"
       id="header"
       color="white"
@@ -15,7 +15,7 @@ export function Header() {
       maxWidth="unset"
     >
       <Menu />
-      <Grid pt="58px" bg="none" py={32}>
+      <Grid pt="58px" bg="none" py={16}>
         <Area lg="auto / 1 / auto / 13">
           <x.h1
             color="vertAntoineClair"
@@ -38,7 +38,7 @@ export function Header() {
           </x.p>
         </Area>
       </Grid>
-    </ContainerStyled>
+    </Container>
   )
 }
 const ContainerStyled = styled(Container)`

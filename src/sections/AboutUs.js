@@ -4,10 +4,10 @@ import styled, { css } from '@xstyled/styled-components'
 import Antoine from '@assets/antoine.avif'
 export function AboutUs() {
   return (
-    <ContainerStyled h="fit-content" id="scope" mt={8}>
+    <ContainerStyled h="fit-content" id="about" mt={8}>
       <Grid pb={16} borderRadius="20px">
         <Area position="relative" mt={8}>
-          <MainTitle title="Qui sommes nous ?" />
+          <MainTitle title="Qui sommes nous ?" id="about" />
         </Area>
         <Area
           display="flex"

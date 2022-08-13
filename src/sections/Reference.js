@@ -1,6 +1,6 @@
-import React from 'react'
-import { Area, Container, Grid, MainTitle, x } from '@components'
-import styled, { css } from '@xstyled/styled-components'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import { Area, Container, DotLine, Grid, MainTitle, x } from '@components'
+import styled, { css, useUp } from '@xstyled/styled-components'
 
 const data = [
   {
@@ -59,44 +59,75 @@ const data = [
   },
 ]
 export function Reference() {
+  const upLg = useUp('lg')
+  const dotsRef = useRef([])
+  const contentRef = useRef([])
+  const imageRef = useRef([])
+
+  useEffect(() => {
+    dotsRef.current.forEach((ref, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const index = entry.target.id.split('-')[1]
+          if (entry.isIntersecting) {
+            contentRef.current[index].classList.add(
+              'fadein-animation',
+              `fadein-totop`,
+            )
+            imageRef.current[index].classList.add(
+              'fadein-animation',
+              `fadein-tobot`,
+            )
+          }
+        },
+        {
+          threshold: 1,
+        },
+      )
+
+      observer.observe(ref)
+      return () => {
+        observer.disconnect()
+      }
+    })
+  }, [])
+
+  useLayoutEffect(() => {
+    if (contentRef?.current && upLg) {
+      contentRef.current.forEach(ref => (ref.style.opacity = 0))
+      imageRef.current.forEach(ref => (ref.style.opacity = 0))
+    }
+  }, [upLg])
+
   return (
     <ContainerStyled
       h="fit-content"
-      id="reference"
       pb={{ _: 0, sm: 8 }}
       bg="white"
+      position="relative"
     >
       <Grid
         borderRadius="20px"
         rowGap={{ sm: '48px' }}
         display={{ _: 'flex', sm: 'grid' }}
         flexDirection="column"
-        overflow="hidden"
         pb={8}
       >
-        <Area position="relative" mt={8} gridRow="1 !important">
-          <MainTitle title="Nos projets" />
+        <Area position="relative" mt={8}>
+          <MainTitle title="Nos projets" id="projects" />
         </Area>
-        <Area
-          gridRow="2 !important"
-          mt="-12px"
-          display={{ _: 'none', sm: 'block' }}
-        >
-          <Line>
-            <Dot />
-          </Line>
-        </Area>
-
+        <DotLine h={{ _: '1241px', lg: '1515px' }} mt="120px" />
         {data.map(({ title, dots }, index) => (
           <>
-            <Content
+            <x.div
               gridArea={{
                 lg: getGrid('lg', index),
                 sm: getGrid('sm', index),
               }}
-              px={{ _: 4, lg: 0 }}
+              px={{ _: 4, sm: 0 }}
               pb={8}
               m="auto"
+              ref={el => (contentRef.current[index] = el)}
             >
               <x.h3 fontSize={{ _: '16px', sm: '24px' }} color="dark">
                 {title}
@@ -106,18 +137,30 @@ export function Reference() {
                   <x.li fontSize="16px">- {item}</x.li>
                 ))}
               </x.ul>
-            </Content>
-            <Img
-              src="https://picsum.photos/350/200"
+            </x.div>
+            <x.div
               gridArea={{
                 lg: getGrid('lg', index, true),
                 sm: getGrid('sm', index, true),
               }}
-              w={{ sm: '200px', lg: 'unset' }}
-              m="auto"
-              borderRadius="5px"
-              mb={{ _: 8, sm: 0 }}
-            />
+            >
+              {index === 0 && (
+                <FirstImageDot display={{ _: 'none', sm: 'block' }} />
+              )}
+              <ImageDot
+                display={{ _: 'none', sm: 'block' }}
+                ref={el => (dotsRef.current[index] = el)}
+                id={`project-${index}`}
+              />
+              <Img
+                src="https://picsum.photos/350/200"
+                w={{ sm: '200px', lg: 'unset' }}
+                m="auto"
+                borderRadius="5px"
+                mb={{ _: 8, sm: 0 }}
+                ref={el => (imageRef.current[index] = el)}
+              />
+            </x.div>
             {index !== data.length - 1 && (
               <x.hr
                 display={{ sm: 'none' }}
@@ -152,62 +195,30 @@ const getGrid = (breakpoint, index, image = false) => {
     (index + 1) * 2 + (image ? 1 : 0)
   } / 3`
 }
-const Dot = styled(x.div)`
-  z-index: 1;
-  width: 0.75em;
-  height: 0.75em;
-  border-radius: 100%;
-  background: white;
-  border: 0.15em solid;
-  border-color: vertAntoineClair;
-  position: fixed;
-  top: 48%;
-  left: 98%;
-  @media (min-width: sm) {
-    left: 50%;
-  }
-  margin-left: -0.375em;
-`
 
-const Line = styled(x.div)`
+const FirstImageDot = styled(x.div)`
   position: absolute;
-  width: 0.15em;
-  margin-left: -0.075em;
-  height: 5000px;
-  left: 98%;
-  @media (min-width: sm) {
-    left: 50%;
-  }
-  background-color: vertAntoineClair;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: vertAntoine;
+  z-index: 1;
+  margin-top: -48px;
+  left: 50%;
+  margin-left: -0.5em;
 `
-const Content = styled(x.div)`
-  @media (min-width: sm) {
-    :before {
-      content: '';
-      position: absolute;
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-      background-color: vertAntoine;
-      left: 50%;
-      margin-left: -8px;
-      z-index: 1;
-      margin-top: -48px;
-    }
-
-    &:last-of-type:after {
-      content: '';
-      position: absolute;
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-      background-color: vertAntoine;
-      left: 50%;
-      bottom: 0px;
-      margin-left: -8px;
-      z-index: 1;
-      margin-top: -25px;
-    }
+const ImageDot = styled(x.div)`
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: vertAntoine;
+  z-index: 1;
+  margin-top: 172px;
+  left: 50%;
+  margin-left: -0.5em;
+  @media (min-width: lg) {
+    margin-top: 216px;
   }
 `
 
