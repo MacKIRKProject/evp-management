@@ -19,6 +19,7 @@ export const hrefs = {
   scope: 'Notre Périmètre',
   skills: 'Nos Compétences',
   projects: 'Nos Projets',
+  testimonials: 'Vos Avis',
   about: 'A Propos',
   'mailto:ADX@EVp-mgmt.fr': 'Nous Contacter',
 }
@@ -33,7 +34,7 @@ export function Hrefs({ ...props }) {
               href={label === 'Nous Contacter' ? href : `#${href}`}
               fontSize="default"
               fontVariant="all-petite-caps"
-              px={8}
+              px={6}
               py={2}
               fontWeight={600}
               letterSpacing={{ _: '1px', lg: '0px' }}
@@ -287,7 +288,7 @@ const MobileMenu = styled(x.div)`
   transition: height 0s ease;
   &.opened {
     transition: height 0.6s ease;
-    height: 391;
+    height: 460;
   }
 `
 const MobileContent = styled(x.ul)`

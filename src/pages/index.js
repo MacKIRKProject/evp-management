@@ -17,6 +17,7 @@ export default function App() {
         <sections.Scope />
         <sections.Competence />
         <sections.Reference />
+        <sections.Testimonials />
         <sections.AboutUs />
       </x.main>
       <sections.Footer />

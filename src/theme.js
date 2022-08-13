@@ -74,6 +74,7 @@ const fontSizes = {
 const shadows = {
   ...defaultTheme.shadows,
   'blur-secondary': `0 0 6px 0 ${colors.primary}`,
+  classic: '0px 0px 20px -15px #10444b',
 }
 
 const transforms = {
