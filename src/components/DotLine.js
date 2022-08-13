@@ -29,7 +29,7 @@ const Dot = styled(x.div)`
 
 const Line = styled(x.div)`
   width: 0.15em;
-  height: fill-available;
+  height: inherit;
   background-color: vertAntoineClair;
 `
 

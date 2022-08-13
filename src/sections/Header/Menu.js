@@ -287,7 +287,7 @@ const MobileMenu = styled(x.div)`
   transition: height 0s ease;
   &.opened {
     transition: height 0.6s ease;
-    height: 312;
+    height: 391;
   }
 `
 const MobileContent = styled(x.ul)`

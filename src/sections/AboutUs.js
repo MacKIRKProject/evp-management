@@ -1,7 +1,7 @@
 import { Area, Container, Grid, MainTitle, x } from '@components'
 import styled, { css } from '@xstyled/styled-components'
 
-import Antoine from '@assets/antoine.avif'
+import Antoine from '@assets/antoine.jpeg'
 export function AboutUs() {
   return (
     <ContainerStyled h="fit-content" id="about" mt={8}>

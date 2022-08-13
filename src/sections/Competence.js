@@ -93,8 +93,8 @@ export function Competence() {
             <SubContainer>
               <Line
                 bottom={0}
-                h="fill-available"
-                display={{ _: 'none', sm: 'block' }}
+                h={{ _: 150, lg: 179 }}
+                display={{ _: 'none', lg: 'block' }}
               >
                 <Dot top="-5px" />
               </Line>
@@ -160,7 +160,7 @@ export function Competence() {
               <Line
                 bottom="-19px"
                 h="134px"
-                display={{ _: 'none', sm: 'block' }}
+                display={{ _: 'none', lg: 'block' }}
               >
                 <Dot bottom="-7px" />
               </Line>
@@ -186,7 +186,7 @@ const BezierCurve = ({ ...props }) => (
     fill="transparent"
     position="absolute"
     top="0"
-    display={{ _: 'none', sm: 'block' }}
+    display={{ _: 'none', lg: 'block' }}
     {...props}
   />
 )
@@ -279,7 +279,7 @@ const BranchStyled = styled(x.div)`
     position: absolute;
     width: 0.15em;
     margin-left: -0.075em;
-    height: fill-available;
+    height: inherit;
     background-color: vertAntoineClair;
   }
   &:before {
